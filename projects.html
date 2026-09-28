@@ -29,6 +29,16 @@
     <main class="page-content card-page">
       <h1>Projects</h1>
 
+      <div class="project-search">
+        <label for="project-search-input">Search projects</label>
+        <input
+          id="project-search-input"
+          type="search"
+          placeholder="Search by title or keyword"
+          aria-controls="project-list"
+        />
+      </div>
+      <p class="search-status" id="project-search-status" role="status" aria-live="polite"></p>
       <div class="card-grid" id="project-list" aria-live="polite"></div>
     </main>
 
@@ -41,6 +51,25 @@
     <script>
       const toggleButton = document.querySelector('.menu-toggle');
       const navMenu = document.querySelector('.nav-menu');
+      const searchInput = document.querySelector('#project-search-input');
+      const searchStatus = document.querySelector('#project-search-status');
+      let projectCards = [];
+
+      const filterProjects = () => {
+        const query = searchInput.value.trim().toLocaleLowerCase();
+        const matchingCards = projectCards.filter(({ card, searchText }) => {
+          const matches = searchText.includes(query);
+          card.hidden = !matches;
+          return matches;
+        });
+
+        searchStatus.textContent = matchingCards.length === 0
+          ? 'No projects found.'
+          : `Showing ${matchingCards.length} of ${projectCards.length} projects.`;
+      };
+
+      searchInput.addEventListener('input', filterProjects);
+
       const loadProjects = async () => {
         const projectList = document.querySelector('#project-list');
 
@@ -49,7 +78,7 @@
           if (!response.ok) throw new Error('Unable to load projects');
 
           const projects = await response.json();
-          projects.forEach((project) => {
+          projectCards = projects.map((project) => {
             const article = document.createElement('article');
             article.className = 'content-card';
 
@@ -65,9 +94,15 @@
 
             article.append(label, title, description);
             projectList.append(article);
+            return {
+              card: article,
+              searchText: `${project.label} ${project.title} ${project.description}`.toLocaleLowerCase()
+            };
           });
+          filterProjects();
         } catch {
           projectList.textContent = 'Projects could not be loaded.';
+          searchStatus.textContent = 'Search is unavailable because projects could not be loaded.';
         }
       };
 
