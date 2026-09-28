@@ -58,16 +58,17 @@ body {
     align-items: center;
     justify-content: center;
     color: #111827;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 0.82;
+    visibility: visible;
     transition: opacity 0.25s ease, visibility 0.25s ease;
     z-index: 9997;
     backdrop-filter: blur(3px);
+    cursor: pointer;
 }
 
-.scroll-cue.visible {
-    opacity: 0.82;
-    visibility: visible;
+.scroll-cue:focus-visible {
+    outline: 3px solid #3360a0;
+    outline-offset: 4px;
 }
 
 .scroll-cue::before {
@@ -95,7 +96,6 @@ body {
 
 .page-content {
     max-width: 760px;
-    min-height: 130vh;
     margin: 80px auto 0;
     padding: 0 24px 80px;
     flex: 1;
@@ -103,7 +103,6 @@ body {
 
 .page-landing .page-content {
     margin-top: 120px;
-    min-height: 130vh;
 }
 
 .profile-page {
@@ -117,42 +116,16 @@ body {
     text-align: left;
 }
 
-.profile-placeholder {
-    position: relative;
+.profile-image {
     width: 170px;
     height: 170px;
-    border-radius: 18px;
-    background: #e5e7eb;
-    border: 1px solid #d1d5db;
+    object-fit: contain;
     margin-top: 24px;
     margin-left: -30px;
     flex-shrink: 0;
-    overflow: hidden;
-}
-
-.profile-placeholder::before {
-    content: "";
-    position: absolute;
-    width: 52px;
-    height: 52px;
-    border: 5px solid #c7ccd5;
-    border-radius: 50%;
-    top: 28px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.profile-placeholder::after {
-    content: "";
-    position: absolute;
-    width: 98px;
-    height: 70px;
-    border: 5px solid #c7ccd5;
-    border-top: none;
-    border-radius: 48% 48% 16% 16%;
-    bottom: 22px;
-    left: 50%;
-    transform: translateX(-50%);
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .profile-copy {
@@ -162,6 +135,12 @@ body {
 
 .profile-copy h1 {
     margin-bottom: 14px;
+}
+
+@media (max-width: 900px) {
+    .profile-image {
+        margin-left: 0;
+    }
 }
 
 .card-page {
@@ -355,8 +334,7 @@ p {
         gap: 20px;
     }
 
-    .profile-placeholder {
-        margin-left: 0;
+    .profile-image {
         width: 140px;
         height: 140px;
     }

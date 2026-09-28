@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Learn more about the designer and developer behind WPFWDesigns and their approach to creating accessible websites."
+    />
     <title>Who Am I</title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -24,7 +28,11 @@
 
     <main class="page-content profile-page">
       <div class="profile-layout">
-        <div class="profile-placeholder" role="img" aria-label="Profile picture placeholder"></div>
+        <img
+          class="profile-image"
+          src="no-profile-picture-15262_256.png"
+          alt="Profile picture"
+        />
 
         <div class="profile-copy">
           <h1>Who am I?</h1>
@@ -37,46 +45,16 @@
       <p>© 2026 WPFWDesigns. All rights reserved.</p>
     </footer>
 
-    <div class="scroll-cue" aria-hidden="true"></div>
+    <a class="scroll-cue" href="blog.html" aria-label="Continue to Blog"></a>
 
     <script>
       const toggleButton = document.querySelector('.menu-toggle');
       const navMenu = document.querySelector('.nav-menu');
-      const scrollCue = document.querySelector('.scroll-cue');
-      const nextPage = 'blog.html';
-      let redirected = false;
-      let cueShown = false;
-
       toggleButton.addEventListener('click', () => {
         const isOpen = navMenu.classList.toggle('open');
         toggleButton.setAttribute('aria-expanded', String(isOpen));
       });
 
-      const updateCue = () => {
-        const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
-        const cueVisible = maxScroll <= 0 || window.scrollY >= maxScroll * 0.2;
-        scrollCue.classList.toggle('visible', cueVisible);
-        cueShown = cueVisible;
-      };
-
-      const maybeRedirect = () => {
-        if (redirected) return;
-
-        const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
-        if (maxScroll <= 0) return;
-
-        if (window.scrollY >= maxScroll * 0.5) {
-          redirected = true;
-          scrollCue.classList.remove('visible');
-          window.location.href = nextPage;
-        }
-      };
-
-      updateCue();
-      window.addEventListener('scroll', () => {
-        updateCue();
-        maybeRedirect();
-      }, { passive: true });
     </script>
   </body>
 </html>

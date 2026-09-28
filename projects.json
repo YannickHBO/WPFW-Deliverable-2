@@ -1,0 +1,27 @@
+[
+  {
+    "label": "Project 01",
+    "title": "Lorem Project",
+    "description": "Here you will find a description of the site; Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  },
+  {
+    "label": "Project 02",
+    "title": "Ipsum Project",
+    "description": "Pellentesque a nisl lacus. Pellentesque scelerisque finibus interdum. Mauris consectetur lectus vitae urna vestibulum."
+  },
+  {
+    "label": "Project 03",
+    "title": "Dolor Project",
+    "description": "Nunc sed nisl ac ex dignissim aliquam. Duis lorem magna, mattis non placerat ac, iaculis vestibulum velit."
+  },
+  {
+    "label": "Project 04",
+    "title": "Consectetur Project",
+    "description": "Integer at suscipit dolor. Integer efficitur nisl nec tellus semper, in mollis dui feugiat. Sed vitae malesuada mauris."
+  },
+  {
+    "label": "Project 05",
+    "title": "Adipiscing Project",
+    "description": "Aliquam eu nisi id mi finibus dapibus. Pellentesque pulvinar varius sapien, nec feugiat nibh facilisis a."
+  }
+]

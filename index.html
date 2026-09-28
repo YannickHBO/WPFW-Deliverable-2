@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Welcome to WPFWDesigns, a web design portfolio featuring accessible websites, creative projects, and development work."
+    />
     <title>Landing Page</title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -25,52 +29,27 @@
     <main class="page-content">
       <h1>Welcome to WPFWDesigns</h1>
       <p>Here you will find a description of the site; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a nisl lacus. Pellentesque scelerisque finibus interdum. Mauris consectetur lectus vitae urna vestibulum, ut vestibulum nulla euismod. Nunc sed nisl ac ex dignissim aliquam. Duis lorem magna, mattis non placerat ac, iaculis vestibulum velit.</p>
+
+      <section>
+        <h2>WCAG Compliance</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a nisl lacus. Pellentesque scelerisque finibus interdum. Mauris consectetur lectus vitae urna vestibulum, ut vestibulum nulla euismod. Nunc sed nisl ac ex dignissim aliquam.</p>
+      </section>
     </main>
 
     <footer class="site-footer">
       <p>© 2026 WPFWDesigns. All rights reserved.</p>
     </footer>
 
-    <div class="scroll-cue" aria-hidden="true"></div>
+    <a class="scroll-cue" href="whoami.html" aria-label="Continue to Who Am I"></a>
 
     <script>
       const toggleButton = document.querySelector('.menu-toggle');
       const navMenu = document.querySelector('.nav-menu');
-      const scrollCue = document.querySelector('.scroll-cue');
-      const nextPage = 'whoami.html';
-      let redirected = false;
-      let cueShown = false;
-
       toggleButton.addEventListener('click', () => {
         const isOpen = navMenu.classList.toggle('open');
         toggleButton.setAttribute('aria-expanded', String(isOpen));
       });
 
-      const updateCue = () => {
-        const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
-        const cueVisible = maxScroll <= 0 || window.scrollY >= maxScroll * 0.2;
-        scrollCue.classList.toggle('visible', cueVisible);
-        cueShown = cueVisible;
-      };
-
-      const maybeRedirect = () => {
-        if (redirected) return;
-
-        const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
-        if (maxScroll <= 0) return;
-
-        if (window.scrollY >= maxScroll * 0.5) {
-          redirected = true;
-          scrollCue.classList.remove('visible');
-          window.location.href = nextPage;
-        }
-      };
-
-      updateCue();
-      window.addEventListener('scroll', () => {
-        updateCue();
-        maybeRedirect();
-      }, { passive: true });
     </script>
   </body>
 </html>

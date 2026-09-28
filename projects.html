@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore web design and development projects created by WPFWDesigns, including accessible and creative digital experiences."
+    />
     <title>Projects</title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -25,71 +29,55 @@
     <main class="page-content card-page">
       <h1>Projects</h1>
 
-      <div class="card-grid">
-        <article class="content-card">
-          <p class="card-date">Project 01</p>
-          <h2>Lorem Project</h2>
-          <p>Here you will find a description of the site; Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </article>
-
-        <article class="content-card">
-          <p class="card-date">Project 02</p>
-          <h2>Ipsum Project</h2>
-          <p>Pellentesque a nisl lacus. Pellentesque scelerisque finibus interdum. Mauris consectetur lectus vitae urna vestibulum.</p>
-        </article>
-
-        <article class="content-card">
-          <p class="card-date">Project 03</p>
-          <h2>Dolor Project</h2>
-          <p>Nunc sed nisl ac ex dignissim aliquam. Duis lorem magna, mattis non placerat ac, iaculis vestibulum velit.</p>
-        </article>
-      </div>
+      <div class="card-grid" id="project-list" aria-live="polite"></div>
     </main>
 
     <footer class="site-footer">
       <p>© 2026 WPFWDesigns. All rights reserved.</p>
     </footer>
 
-    <div class="scroll-cue" aria-hidden="true"></div>
+    <a class="scroll-cue" href="index.html" aria-label="Continue to Home"></a>
 
     <script>
       const toggleButton = document.querySelector('.menu-toggle');
       const navMenu = document.querySelector('.nav-menu');
-      const scrollCue = document.querySelector('.scroll-cue');
-      const nextPage = 'index.html';
-      let redirected = false;
-      let cueShown = false;
+      const loadProjects = async () => {
+        const projectList = document.querySelector('#project-list');
+
+        try {
+          const response = await fetch('projects.json');
+          if (!response.ok) throw new Error('Unable to load projects');
+
+          const projects = await response.json();
+          projects.forEach((project) => {
+            const article = document.createElement('article');
+            article.className = 'content-card';
+
+            const label = document.createElement('p');
+            label.className = 'card-date';
+            label.textContent = project.label;
+
+            const title = document.createElement('h2');
+            title.textContent = project.title;
+
+            const description = document.createElement('p');
+            description.textContent = project.description;
+
+            article.append(label, title, description);
+            projectList.append(article);
+          });
+        } catch {
+          projectList.textContent = 'Projects could not be loaded.';
+        }
+      };
+
+      loadProjects();
 
       toggleButton.addEventListener('click', () => {
         const isOpen = navMenu.classList.toggle('open');
         toggleButton.setAttribute('aria-expanded', String(isOpen));
       });
 
-      const updateCue = () => {
-        const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
-        const cueVisible = maxScroll <= 0 || window.scrollY >= maxScroll * 0.2;
-        scrollCue.classList.toggle('visible', cueVisible);
-        cueShown = cueVisible;
-      };
-
-      const maybeRedirect = () => {
-        if (redirected) return;
-
-        const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
-        if (maxScroll <= 0) return;
-
-        if (window.scrollY >= maxScroll * 0.5) {
-          redirected = true;
-          scrollCue.classList.remove('visible');
-          window.location.href = nextPage;
-        }
-      };
-
-      updateCue();
-      window.addEventListener('scroll', () => {
-        updateCue();
-        maybeRedirect();
-      }, { passive: true });
     </script>
   </body>
 </html>

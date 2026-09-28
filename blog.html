@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Read the WPFWDesigns blog for insights, updates, and articles about web design, development, and accessibility."
+    />
     <title>Blog</title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -43,6 +47,24 @@
           <h2>Blog Post 3</h2>
           <p>Nunc sed nisl ac ex dignissim aliquam. Duis lorem magna, mattis non placerat ac, iaculis vestibulum velit.</p>
         </article>
+
+        <article class="content-card">
+          <p class="card-date">April 9, 2026</p>
+          <h2>Blog Post 4</h2>
+          <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; integer vitae augue eget turpis sodales faucibus.</p>
+        </article>
+
+        <article class="content-card">
+          <p class="card-date">May 21, 2026</p>
+          <h2>Blog Post 5</h2>
+          <p>Praesent commodo tristique nunc, sed efficitur nulla fermentum ut. Aliquam erat volutpat. In id ligula vel nibh lacinia porta.</p>
+        </article>
+
+        <article class="content-card">
+          <p class="card-date">June 14, 2026</p>
+          <h2>Blog Post 6</h2>
+          <p>Suspendisse potenti. Etiam euismod eleifend eros sit amet aliquet. Curabitur feugiat risus ac lectus convallis, sed tristique nibh interdum.</p>
+        </article>
       </div>
     </main>
 
@@ -50,46 +72,16 @@
       <p>© 2026 WPFWDesigns. All rights reserved.</p>
     </footer>
 
-    <div class="scroll-cue" aria-hidden="true"></div>
+    <a class="scroll-cue" href="projects.html" aria-label="Continue to Projects"></a>
 
     <script>
       const toggleButton = document.querySelector('.menu-toggle');
       const navMenu = document.querySelector('.nav-menu');
-      const scrollCue = document.querySelector('.scroll-cue');
-      const nextPage = 'projects.html';
-      let redirected = false;
-      let cueShown = false;
-
       toggleButton.addEventListener('click', () => {
         const isOpen = navMenu.classList.toggle('open');
         toggleButton.setAttribute('aria-expanded', String(isOpen));
       });
 
-      const updateCue = () => {
-        const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
-        const cueVisible = maxScroll <= 0 || window.scrollY >= maxScroll * 0.2;
-        scrollCue.classList.toggle('visible', cueVisible);
-        cueShown = cueVisible;
-      };
-
-      const maybeRedirect = () => {
-        if (redirected) return;
-
-        const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
-        if (maxScroll <= 0) return;
-
-        if (window.scrollY >= maxScroll * 0.5) {
-          redirected = true;
-          scrollCue.classList.remove('visible');
-          window.location.href = nextPage;
-        }
-      };
-
-      updateCue();
-      window.addEventListener('scroll', () => {
-        updateCue();
-        maybeRedirect();
-      }, { passive: true });
     </script>
   </body>
 </html>
