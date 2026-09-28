@@ -60,10 +60,7 @@
       button.setAttribute('aria-pressed', String(button.dataset.themeMode === mode));
     });
 
-    const modeText = mode === 'auto'
-      ? `Auto: ${isDark ? 'dark' : 'light'}`
-      : `Manual: ${mode}`;
-    status.textContent = `${location.name} | ${weatherText} | ${modeText}`;
+    status.textContent = `${location.name} | ${weatherText}`;
   };
 
   modeButtons.forEach((button) => {

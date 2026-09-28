@@ -31,8 +31,8 @@
             <p class="weather-theme__status" data-weather-status role="status" aria-live="polite">Amsterdam | Loading weather...</p>
             <div class="weather-theme__controls" role="group" aria-label="Theme mode">
               <button class="weather-theme__button" type="button" data-theme-mode="auto" aria-pressed="true">Auto</button>
-              <button class="weather-theme__button" type="button" data-theme-mode="light" aria-pressed="false">Light</button>
-              <button class="weather-theme__button" type="button" data-theme-mode="dark" aria-pressed="false">Dark</button>
+              <button class="weather-theme__button weather-theme__icon-button" type="button" data-theme-mode="light" aria-label="Light theme" title="Light theme" aria-pressed="false"><span aria-hidden="true">☀️</span></button>
+              <button class="weather-theme__button weather-theme__icon-button" type="button" data-theme-mode="dark" aria-label="Dark theme" title="Dark theme" aria-pressed="false"><span aria-hidden="true">🌙</span></button>
             </div>
           </div>
         </li>
@@ -61,6 +61,21 @@
       toggleButton.addEventListener('click', () => {
         const isOpen = navMenu.classList.toggle('open');
         toggleButton.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!navMenu.contains(event.target) && !toggleButton.contains(event.target)) {
+          navMenu.classList.remove('open');
+          toggleButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navMenu.classList.contains('open')) {
+          navMenu.classList.remove('open');
+          toggleButton.setAttribute('aria-expanded', 'false');
+          toggleButton.focus();
+        }
       });
 
     </script>

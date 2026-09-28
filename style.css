@@ -208,11 +208,12 @@ body {
     color: #334155;
     font-size: 0.82rem;
     font-weight: 600;
+    text-align: center;
 }
 
 .weather-theme__controls {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     border: 1px solid #64748b;
     border-radius: 6px;
     overflow: hidden;
@@ -232,6 +233,14 @@ body {
 
 .weather-theme__button:last-child {
     border-right: 0;
+}
+
+.weather-theme__icon-button {
+    min-width: 40px;
+    padding-right: 6px;
+    padding-left: 6px;
+    font-size: 1.1rem;
+    line-height: 1;
 }
 
 .weather-theme__button[aria-pressed="true"] {
@@ -710,7 +719,7 @@ p {
     display: none;
     flex-direction: column;
     gap: 10px;
-    width: min(300px, calc(100vw - 32px));
+    width: min(210px, calc(100vw - 32px));
     max-height: calc(100vh - 80px);
     overflow-y: auto;
     list-style: none;
