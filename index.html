@@ -9,6 +9,7 @@
     />
     <title>Landing Page</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="weather-theme.js" defer></script>
   </head>
   <body data-page="landing" class="page-landing">
     <a href="index.html" class="brand-tag" aria-label="Go to the home page"><i>WPFWDesigns</i></a>
@@ -23,6 +24,18 @@
         <li><a href="whoami.html">Whoami</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav-options">
+          <span class="nav-options__label">Options</span>
+          <div class="weather-theme" data-weather-theme>
+            <p class="weather-theme__status" data-weather-status role="status" aria-live="polite">Amsterdam | Loading weather...</p>
+            <div class="weather-theme__controls" role="group" aria-label="Theme mode">
+              <button class="weather-theme__button" type="button" data-theme-mode="auto" aria-pressed="true">Auto</button>
+              <button class="weather-theme__button" type="button" data-theme-mode="light" aria-pressed="false">Light</button>
+              <button class="weather-theme__button" type="button" data-theme-mode="dark" aria-pressed="false">Dark</button>
+            </div>
+          </div>
+        </li>
       </ul>
     </nav>
 

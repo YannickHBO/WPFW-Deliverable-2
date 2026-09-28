@@ -9,6 +9,7 @@
     />
     <title>Projects</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="weather-theme.js" defer></script>
   </head>
   <body data-page="projects" class="page-projects">
     <a href="index.html" class="brand-tag" aria-label="Go to the home page"><i>WPFWDesigns</i></a>
@@ -23,6 +24,18 @@
         <li><a href="whoami.html">Whoami</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav-options">
+          <span class="nav-options__label">Options</span>
+          <div class="weather-theme" data-weather-theme>
+            <p class="weather-theme__status" data-weather-status role="status" aria-live="polite">Amsterdam | Loading weather...</p>
+            <div class="weather-theme__controls" role="group" aria-label="Theme mode">
+              <button class="weather-theme__button" type="button" data-theme-mode="auto" aria-pressed="true">Auto</button>
+              <button class="weather-theme__button" type="button" data-theme-mode="light" aria-pressed="false">Light</button>
+              <button class="weather-theme__button" type="button" data-theme-mode="dark" aria-pressed="false">Dark</button>
+            </div>
+          </div>
+        </li>
       </ul>
     </nav>
 
@@ -36,6 +49,7 @@
           type="search"
           placeholder="Search by title or keyword"
           aria-controls="project-list"
+          aria-describedby="project-search-status"
         />
       </div>
       <p class="search-status" id="project-search-status" role="status" aria-live="polite"></p>
@@ -46,7 +60,7 @@
       <p>© 2026 WPFWDesigns. All rights reserved.</p>
     </footer>
 
-    <a class="scroll-cue" href="index.html" aria-label="Continue to Home"></a>
+    <a class="scroll-cue" href="contact.html" aria-label="Continue to Contact"></a>
 
     <script>
       const toggleButton = document.querySelector('.menu-toggle');
@@ -63,7 +77,9 @@
           return matches;
         });
 
-        searchStatus.textContent = matchingCards.length === 0
+        const hasNoMatches = matchingCards.length === 0;
+        searchStatus.classList.toggle('is-error', hasNoMatches);
+        searchStatus.textContent = hasNoMatches
           ? 'No projects found.'
           : `Showing ${matchingCards.length} of ${projectCards.length} projects.`;
       };
@@ -101,8 +117,12 @@
           });
           filterProjects();
         } catch {
-          projectList.textContent = 'Projects could not be loaded.';
-          searchStatus.textContent = 'Search is unavailable because projects could not be loaded.';
+          searchInput.disabled = true;
+          searchInput.classList.add('is-load-error');
+          searchInput.placeholder = 'Projects unavailable: projects.json failed';
+          searchStatus.classList.remove('is-error');
+          searchStatus.classList.add('is-visually-hidden');
+          searchStatus.textContent = 'Projects are unavailable because projects.json could not be loaded. If you opened this page directly, serve the site locally and reload.';
         }
       };
 

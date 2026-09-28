@@ -9,6 +9,7 @@
     />
     <title>Blog</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="weather-theme.js" defer></script>
   </head>
   <body data-page="blog" class="page-blog">
     <a href="index.html" class="brand-tag" aria-label="Go to the home page"><i>WPFWDesigns</i></a>
@@ -23,47 +24,59 @@
         <li><a href="whoami.html">Whoami</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav-options">
+          <span class="nav-options__label">Options</span>
+          <div class="weather-theme" data-weather-theme>
+            <p class="weather-theme__status" data-weather-status role="status" aria-live="polite">Amsterdam | Loading weather...</p>
+            <div class="weather-theme__controls" role="group" aria-label="Theme mode">
+              <button class="weather-theme__button" type="button" data-theme-mode="auto" aria-pressed="true">Auto</button>
+              <button class="weather-theme__button" type="button" data-theme-mode="light" aria-pressed="false">Light</button>
+              <button class="weather-theme__button" type="button" data-theme-mode="dark" aria-pressed="false">Dark</button>
+            </div>
+          </div>
+        </li>
       </ul>
     </nav>
 
-    <main class="page-content card-page">
+    <main class="page-content blog-page">
       <h1>Blog</h1>
 
-      <div class="card-grid">
-        <article class="content-card">
-          <p class="card-date">January 12, 2026</p>
-          <h2>Blog Post 1</h2>
-          <p>Here you will find a description of the site; Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <div class="blog-feed">
+        <article class="blog-entry">
+          <p class="blog-date">June 14, 2026</p>
+          <h2>Blog Post 6</h2>
+          <p>Suspendisse potenti. Etiam euismod eleifend eros sit amet aliquet. Curabitur feugiat risus ac lectus convallis, sed tristique nibh interdum.</p>
         </article>
 
-        <article class="content-card">
-          <p class="card-date">February 5, 2026</p>
-          <h2>Blog Post 2</h2>
-          <p>Pellentesque a nisl lacus. Pellentesque scelerisque finibus interdum. Mauris consectetur lectus vitae urna vestibulum.</p>
-        </article>
-
-        <article class="content-card">
-          <p class="card-date">March 18, 2026</p>
-          <h2>Blog Post 3</h2>
-          <p>Nunc sed nisl ac ex dignissim aliquam. Duis lorem magna, mattis non placerat ac, iaculis vestibulum velit.</p>
-        </article>
-
-        <article class="content-card">
-          <p class="card-date">April 9, 2026</p>
-          <h2>Blog Post 4</h2>
-          <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; integer vitae augue eget turpis sodales faucibus.</p>
-        </article>
-
-        <article class="content-card">
-          <p class="card-date">May 21, 2026</p>
+        <article class="blog-entry">
+          <p class="blog-date">May 21, 2026</p>
           <h2>Blog Post 5</h2>
           <p>Praesent commodo tristique nunc, sed efficitur nulla fermentum ut. Aliquam erat volutpat. In id ligula vel nibh lacinia porta.</p>
         </article>
 
-        <article class="content-card">
-          <p class="card-date">June 14, 2026</p>
-          <h2>Blog Post 6</h2>
-          <p>Suspendisse potenti. Etiam euismod eleifend eros sit amet aliquet. Curabitur feugiat risus ac lectus convallis, sed tristique nibh interdum.</p>
+        <article class="blog-entry">
+          <p class="blog-date">April 9, 2026</p>
+          <h2>Blog Post 4</h2>
+          <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; integer vitae augue eget turpis sodales faucibus.</p>
+        </article>
+
+        <article class="blog-entry">
+          <p class="blog-date">March 18, 2026</p>
+          <h2>Blog Post 3</h2>
+          <p>Nunc sed nisl ac ex dignissim aliquam. Duis lorem magna, mattis non placerat ac, iaculis vestibulum velit.</p>
+        </article>
+
+        <article class="blog-entry">
+          <p class="blog-date">February 5, 2026</p>
+          <h2>Blog Post 2</h2>
+          <p>Pellentesque a nisl lacus. Pellentesque scelerisque finibus interdum. Mauris consectetur lectus vitae urna vestibulum.</p>
+        </article>
+
+        <article class="blog-entry">
+          <p class="blog-date">January 12, 2026</p>
+          <h2>Blog Post 1</h2>
+          <p>Here you will find a description of the site; Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </article>
       </div>
     </main>
